@@ -10,3 +10,10 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
+
+
+n=int(input())
+u=input()
+a=u.split(' ')
+j=int(input())
+print(a.count(str(j)))
