@@ -10,4 +10,4 @@
 * 2020 Digital Contents Competition - 
 * 2022 ~ Sejong Univ Computer Engineering
 * 2022 SAL Study
-* 2022 SWEA 하계 대학생 S/W 알고리즘 역량강화 과정 수료
+* 2022 삼성전자 DX 부문 하계 SW 역량강화 특강 수료
