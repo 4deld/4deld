@@ -1,4 +1,4 @@
-### 김재현(JaeHyun Kim), rlapo213
+### 김재현(JaeHyun Kim), Deld
 * 2003 Birth
 * 2019 ~ 2021 Sunrin Internet High
 * 2019 IOT Competition - 
