@@ -1,0 +1,121 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyMm4lfX4SFwJWKu7QhT88/e",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/4deld/4deld/blob/main/nahyunAssistant\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BkluDUMnfMyZ",
+        "outputId": "5b52b06e-f3d5-40b6-993b-5e4f25a69a7b"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting openai\n",
+            "  Downloading openai-1.30.1-py3-none-any.whl (320 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m320.6/320.6 kB\u001b[0m \u001b[31m4.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hRequirement already satisfied: anyio<5,>=3.5.0 in /usr/local/lib/python3.10/dist-packages (from openai) (3.7.1)\n",
+            "Requirement already satisfied: distro<2,>=1.7.0 in /usr/lib/python3/dist-packages (from openai) (1.7.0)\n",
+            "Collecting httpx<1,>=0.23.0 (from openai)\n",
+            "  Downloading httpx-0.27.0-py3-none-any.whl (75 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m75.6/75.6 kB\u001b[0m \u001b[31m5.0 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hRequirement already satisfied: pydantic<3,>=1.9.0 in /usr/local/lib/python3.10/dist-packages (from openai) (2.7.1)\n",
+            "Requirement already satisfied: sniffio in /usr/local/lib/python3.10/dist-packages (from openai) (1.3.1)\n",
+            "Requirement already satisfied: tqdm>4 in /usr/local/lib/python3.10/dist-packages (from openai) (4.66.4)\n",
+            "Requirement already satisfied: typing-extensions<5,>=4.7 in /usr/local/lib/python3.10/dist-packages (from openai) (4.11.0)\n",
+            "Requirement already satisfied: idna>=2.8 in /usr/local/lib/python3.10/dist-packages (from anyio<5,>=3.5.0->openai) (3.7)\n",
+            "Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.10/dist-packages (from anyio<5,>=3.5.0->openai) (1.2.1)\n",
+            "Requirement already satisfied: certifi in /usr/local/lib/python3.10/dist-packages (from httpx<1,>=0.23.0->openai) (2024.2.2)\n",
+            "Collecting httpcore==1.* (from httpx<1,>=0.23.0->openai)\n",
+            "  Downloading httpcore-1.0.5-py3-none-any.whl (77 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m77.9/77.9 kB\u001b[0m \u001b[31m6.3 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hCollecting h11<0.15,>=0.13 (from httpcore==1.*->httpx<1,>=0.23.0->openai)\n",
+            "  Downloading h11-0.14.0-py3-none-any.whl (58 kB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m58.3/58.3 kB\u001b[0m \u001b[31m4.8 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hRequirement already satisfied: annotated-types>=0.4.0 in /usr/local/lib/python3.10/dist-packages (from pydantic<3,>=1.9.0->openai) (0.6.0)\n",
+            "Requirement already satisfied: pydantic-core==2.18.2 in /usr/local/lib/python3.10/dist-packages (from pydantic<3,>=1.9.0->openai) (2.18.2)\n",
+            "Installing collected packages: h11, httpcore, httpx, openai\n",
+            "Successfully installed h11-0.14.0 httpcore-1.0.5 httpx-0.27.0 openai-1.30.1\n"
+          ]
+        }
+      ],
+      "source": [
+        "#execute ONLY ONCE\n",
+        "#!pip install openai"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "from openai import OpenAI\n",
+        "from typing_extensions import override\n",
+        "from openai import AssistantEventHandler\n",
+        "from datetime import datetime\n",
+        "\n",
+        "class EventHandler(AssistantEventHandler):\n",
+        "  @override\n",
+        "  def on_text_created(self, text) -> None:\n",
+        "    print(f\"\\n11assistant > \", end=\"\", flush=True)\n",
+        "\n",
+        "  @override\n",
+        "  def on_text_delta(self, delta, snapshot):\n",
+        "    print(\"22\",delta.value, end=\"\", flush=True)\n",
+        "\n",
+        "  def on_tool_call_created(self, tool_call):\n",
+        "    print(f\"\\n33assistant > {tool_call.type}\\n\", flush=True)\n",
+        "\n",
+        "  def on_tool_call_delta(self, delta, snapshot):\n",
+        "    if delta.type == 'file_search':\n",
+        "      if delta.file_search.input:\n",
+        "        print(delta.file_search.input, end=\"\", flush=True)\n",
+        "      if delta.file_search.outputs:\n",
+        "        print(f\"\\n\\noutput >\", flush=True)\n",
+        "        for output in delta.file_search.outputs:\n",
+        "          if output.type == \"logs\":\n",
+        "            print(f\"\\n{output.logs}\", flush=True)\n",
+        "\n",
+        "client = OpenAI(api_key= )\n",
+        "\n",
+        "def appendTolocaldb(assistant_name,user_message,assistant_message,token_count):\n",
+        "    localdb.append(assistant_name,datetime.now().strftime('%Y-%m-%d %H:%M:%S'),user_message,assistant_message,token_count)"
+      ],
+      "metadata": {
+        "id": "YwTA4a-Df1F5"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
