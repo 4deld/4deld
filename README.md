@@ -13,5 +13,6 @@
 * 2022 삼성전자 DX 부문 하계 SW 역량강화 특강 수료
 * 2023 (former) vice president of SAL
 * 2023 SAL Mentor
+* 2024 Inside Me
 
 [![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=rlapo)](https://solved.ac/rlapo/)
